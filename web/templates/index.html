@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhận diện tin giả</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <div class="top-section">
+            <div class="header-title">
+                <h1>NHẬN DIỆN<br>TIN GIẢ</h1>
+                <p>Identifying<br>Fake News</p>
+            </div>
+            
+            <div class="top-robot-group">
+                 <img src="../static/images/Robot4.png" alt="Robot Top" class="robot-top">
+                <div class="speech-bubble-top">
+                    Bạn đang gặp vấn đề trong việc nhận biết một tin tức.<br>
+                    Hãy nhập vào đây để mình phân biệt giúp nhé!
+                </div>
+            </div>
+        </div>
+
+        <div class="dashed-container">
+            <div class="col-left">
+                <div class="input-group">
+                    <label>Nội dung chính:</label>
+                    <div class="input-wrapper textarea-wrapper">
+                        <textarea id="content" placeholder="Nội dung đoạn văn bản (bắt buộc)..."></textarea>
+                        <span class="clear-btn">X</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Tiêu đề:</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="title" placeholder="Tiêu đề nếu có...">
+                        <span class="clear-btn">X</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Link:</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="link" placeholder="Link nếu có...">
+                        <span class="clear-btn">X</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Tác giả:</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="author" placeholder="Tác giả nếu có...">
+                        <span class="clear-btn">X</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Ngày tháng:</label>
+                    <div class="input-wrapper">
+                        <input type="date" id="news-date">
+                        <span class="clear-btn">X</span>
+                    </div>
+                </div>
+
+                <div class="bottom-controls">
+                    <div class="control-row">
+                        <div>
+                            <label>Nguồn:</label>
+                            <select id="source">
+                                <option value="none">Không biết</option>
+                                <option value="email">Email</option>
+                                <option value="social">Mạng xã hội</option>
+                                <option value="news">Báo điện tử</option>
+                            </select>
+                        </div>
+                        <label class="checkbox-label">Có ảnh  <input type="checkbox" id="has-image"> </label>
+                        <label class="checkbox-label">    Có video  <input type="checkbox" id="has-video"> </label>
+                    </div>
+                    
+                    <div class="stats-row">
+                        <div>
+                            <div class="stat-item">
+                                <label>Lượt chia sẻ:</label>
+                                <input type="number" id="shares" class="small-input">
+                            </div>
+                            <div class="stat-item">
+                                <label>Lượt bình luận:</label>
+                                <input type="number" id="comments" class="small-input">   
+                            </div>
+                        </div>
+                        <button id="btnReset" class="btn-secondary">NHẬP LẠI</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-right">
+                <div class="robot-display">
+                    <div class="speech-bubble-right" id="aiBubble">
+                        Mình sẽ nhận diện nhanh thôi
+                    </div>
+                    <img src="../static/images/Robot2.png" alt="Robot Detect" class="robot-main">
+                </div>
+
+                <div class="action-area">
+                    <div class="button-group">
+                        <button type="button" id="btnAnalyze" class="btn-primary">NHẬN DIỆN</button>
+                       
+                    </div>
+
+                    <div id="loadingArea" class="loading-container hidden">
+                        <div class="progress-circle" id="circleBorder">
+                            <span id="progressText">0%</span>
+                        </div>
+                        <div class="loading-content">
+                            <span>Đang nhận diện...</span>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" id="progressBar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <button id="btnCancel" class="btn-cancel">HUỶ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../scripts/main.js"></script>
+</body>
+</html>

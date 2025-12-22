@@ -1,0 +1,845 @@
+/* =========================================
+   1. VARIABLES & GLOBAL RESET
+   ========================================= */
+:root {
+    --primary-color: #76d75d;       /* Xanh lá nút bấm */
+    --primary-hover: #65be4e;
+    --accent-blue: #5b7fff;         /* Viền xanh robot */
+    --bg-stripe-1: #d8b4fe;         /* Nền tím nhạt */
+    --bg-stripe-2: #e9d5ff;         /* Nền tím đậm hơn chút */
+    --text-dark: #333;
+    --text-gray: #666;
+    --dashed-border: #333;
+    --input-bg: #f2f2f2;
+    --white: #ffffff;
+    --bubble-yellow: #e8e8a6;
+    --danger: #ff3b30;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-hard: 4px 4px 0px rgba(0, 0, 0, 0.8); /* Bóng cứng kiểu truyện tranh */
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    /* Nền sọc tím */
+    background: repeating-linear-gradient(
+        45deg,
+        var(--bg-stripe-1),
+        var(--bg-stripe-1) 10px,
+        var(--bg-stripe-2) 10px,
+        var(--bg-stripe-2) 20px
+    );
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px 10px; /* Thêm padding nhỏ 2 bên cho mobile */
+    color: var(--text-dark);
+}
+
+/* Container chính giới hạn chiều rộng chuẩn website (1200px thay vì 2000px) */
+.main-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   2. HEADER SECTION
+   ========================================= */
+.top-section {
+    display: flex;
+    flex-direction: row;      /* Ép nằm cùng một hàng ngang */
+    justify-content: center;   /* Quan trọng: Căn toàn bộ cụm này vào giữa màn hình */
+    align-items: flex-end;    /* Căn chân các phần tử bằng nhau */
+    gap: 30px;                /* Khoảng cách giữa Tiêu đề - Robot - Bong bóng */
+    margin-bottom: -35px;     /* Robot đè nhẹ lên khung dưới */
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+    flex-wrap: nowrap;        /* Giữ nguyên hàng ngang trên PC */
+}
+
+/* 1. Phần Text bên trái */
+.header-title {
+    text-align: left;        /* Chữ căn lề phải để hướng về phía robot */
+    margin-bottom: 20px;
+}
+
+.header-title h1 {
+    font-size: clamp(25px, 4vw, 45px);
+    line-height: 1.1;
+    margin: 0;
+    font-weight: 900;
+}
+
+.header-title p {
+    font-size: clamp(18px, 3vw, 30px);
+    margin: 5px 0 0 0;
+}
+
+/* 2. Phần Robot ở giữa */
+.top-robot-group {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    min-width: fit-content;
+}
+
+.robot-top {
+    width: 220px;
+    height: auto;
+    z-index: 2;
+}
+
+/* 3. Phần Bong bóng bên phải (Cao hơn robot một chút) */
+.speech-bubble-top {
+    background: var(--white);
+    padding: 15px 20px;
+    border-radius: 20px;
+    border: 2px solid var(--text-dark);
+    font-size: 16px;
+    position: relative;
+    margin-bottom: 80px;      /* Đẩy bong bóng cao lên so với robot */
+    max-width: 280px;
+    text-align: left;
+    box-shadow: var(--shadow-hard);
+    z-index: 1;
+}
+
+/* Mũi tên bong bóng trỏ sang trái về phía robot */
+.speech-bubble-top::before {
+    content: '';
+    position: absolute;
+    left: -12px;              /* Đưa mũi tên sang cạnh trái */
+    bottom: 20px;             /* Căn vị trí mũi tên */
+    top: auto;
+    right: auto;
+    border-top: 10px solid transparent;
+    border-right: 12px solid var(--text-dark); /* Mũi tên trỏ sang trái */
+    border-bottom: 10px solid transparent;
+    border-left: none;
+}
+
+/* =========================================
+   HỖ TRỢ RESPONSIVE (CHO ĐIỆN THOẠI)
+   ========================================= */
+@media (max-width: 850px) {
+    /* 1. Tổng thể Header */
+    .top-section {
+        flex-direction: column; 
+        align-items: center;
+        gap: 10px;
+        margin-bottom: -20px; /* Để chân robot đè lên khung */
+    }
+    
+    /* 2. Tiêu đề cao nhất */
+    .header-title {
+        order: 1; 
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    /* 3. Nhóm Robot & Bong bóng */
+    .top-robot-group {
+        order: 2; 
+        display: flex;
+        flex-direction: column; /* Xếp dọc */
+        align-items: center;
+        margin-top: 0;
+    }
+
+    /* 4. ÉP BUỘC Bong bóng nằm TRÊN Robot */
+    .speech-bubble-top {
+        order: 1;           /* Ép lên vị trí số 1 trong nhóm */
+        margin-bottom: 20px; 
+        margin-right: 0;
+        text-align: center;
+        max-width: 280px;
+    }
+
+    /* 5. ÉP BUỘC Robot nằm DƯỚI Bong bóng */
+    .robot-top {
+        order: 2;           /* Ép xuống vị trí số 2 trong nhóm */
+        width: 180px; 
+        margin-left: 0;
+    }
+
+    /* 6. Mũi tên trỏ từ Hộp thoại xuống Robot */
+    .speech-bubble-top::before {
+        left: 50%;
+        bottom: -12px;
+        transform: translateX(-50%);
+        top: auto;
+        right: auto;
+        border-top: 12px solid var(--text-dark); /* Trỏ xuống */
+        border-right: 12px solid transparent;
+        border-left: 12px solid transparent;
+        border-bottom: none;
+    }
+}
+/* =========================================
+   3. MAIN DASHED CONTAINER (KHUNG CHÍNH)
+   ========================================= */
+.dashed-container {
+    background: var(--white);
+    border: 3px dashed var(--dashed-border);
+    border-radius: 30px;
+    padding: 40px;
+    display: flex; /* Dùng Flexbox để chia cột */
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+    box-shadow: var(--shadow-soft);
+    margin-top: 20px;
+}
+
+/* --- LEFT COLUMN (FORM) --- */
+.col-left {
+    flex: 3; /* Chiếm 60% không gian */
+    min-width: 300px; /* Đảm bảo không bị bóp quá nhỏ */
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-weight: 700;
+    font-size: 18px;
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+
+.input-wrapper {
+    position: relative;
+    background: var(--input-bg);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    transition: box-shadow 0.3s ease;
+    border: 1px solid transparent;
+}
+
+/* Hiệu ứng focus khi nhập liệu */
+.input-wrapper:focus-within {
+    border-color: var(--accent-blue);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(91, 127, 255, 0.15);
+}
+
+.input-wrapper input,
+.input-wrapper textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 12px 15px;
+    font-size: 16px;
+    outline: none;
+    color: var(--text-dark);
+}
+
+.textarea-wrapper {
+    height: 100px;
+    align-items: flex-start;
+}
+.textarea-wrapper textarea {
+    height: 100%;
+    resize: vertical;
+}
+
+.clear-btn {
+    padding: 0 15px;
+    color: #999;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+.clear-btn:hover { color: var(--danger); }
+
+/* --- CONTROLS AREA --- */
+.bottom-controls {
+    margin-top: 20px;
+}
+
+.control-row {
+    display: flex;
+    flex-wrap: wrap; /* Rớt dòng nếu màn hình nhỏ */
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.control-row select {
+    padding: 8px 12px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    background: white;
+    cursor: pointer;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.checkbox-label input { width: 18px; height: 18px; accent-color: var(--primary-color); }
+
+.stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.small-input {
+    background: var(--input-bg);
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    width: 80px;
+    margin-left: 10px;
+    padding: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn-secondary {
+    background-color: #eee;
+    color: #555;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+.btn-secondary:hover { background-color: #ddd; transform: translateY(-2px); }
+
+/* --- RIGHT COLUMN (ROBOT + ACTION) --- */
+.col-right {
+    flex: 2; /* Chiếm 40% */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 280px;
+}
+
+.robot-display {
+    position: relative;
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+/* Bong bóng bên phải */
+.speech-bubble-right {
+    background: var(--white);
+    border: 3px solid var(--accent-blue);
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 16px;
+    text-align: left;
+    position: absolute;
+    top: -20px;
+    right: 10%; /* Căn chỉnh linh hoạt */
+    width: 200px;
+    box-shadow: 5px 5px 0 rgba(91, 127, 255, 0.3);
+    z-index: 3;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.speech-bubble-right::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 20px;
+    border-left: 15px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 15px solid var(--accent-blue);
+}
+
+.robot-main {
+    width: 220px;
+    max-width: 80%;
+    height: auto;
+    margin-top: 40px;
+}
+
+/* --- BUTTON & LOADING --- */
+.action-area {
+    width: 100%;
+    max-width: 350px; /* Giới hạn chiều rộng nút */
+}
+
+.btn-primary {
+    width: 100%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(118, 215, 93, 0.4);
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(118, 215, 93, 0.6);
+}
+.btn-primary:active { transform: translateY(0); }
+
+/* Loading Styles */
+.loading-container {
+    display: flex;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 15px;
+    gap: 15px;
+    width: 100%;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.progress-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 4px solid #e0e0e0;
+    border-top: 4px solid var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.spinning { animation: spin 1s linear infinite; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.progress-circle span { animation: keep-upright 1s linear infinite; }
+@keyframes keep-upright { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
+
+.loading-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.progress-bar-bg {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 5px;
+}
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--primary-color);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.btn-cancel {
+    background: var(--danger);
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+.btn-cancel:hover { transform: scale(1.1); }
+
+.hidden { display: none !important; }
+
+/* =========================================
+   4. RESULT PAGE STYLES
+   ========================================= */
+.result-container {
+    padding: 30px;
+    flex-direction: column;
+    align-items: center;
+    min-height: auto;
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Cho phép rớt dòng */
+    gap: 20px;
+}
+
+.header-col {
+    text-align: center;
+    min-width: 150px;
+}
+
+.header-col h3 {
+    font-size: 16px;
+    color: var(--text-gray);
+    margin: 0 0 5px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.header-col h2 {
+    font-size: 32px;
+    font-weight: 900;
+    margin: 0;
+}
+
+.text-red { color: #dc3545; }
+.text-green { color: #28a745; }
+.text-orange { color: #fd7e14; }
+
+.result-content-box {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 30px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #e9ecef;
+}
+
+.content-header {
+    font-weight: 800;
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.content-body {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* --- BOTTOM SECTION (RESULT) --- */
+.bottom-section {
+    display: flex;
+    justify-content: center; /* Đổi thành center để các khối chụm vào giữa */
+    align-items: center;     /* CĂN GIỮA DỌC cho tất cả: Nút - Robot - Feedback */
+    margin-top: 40px;
+    width: 100%;
+    max-width: 1200px;
+    flex-wrap: wrap; 
+    gap: 10px;               /* Thu hẹp khoảng cách tổng thể giữa 3 khối */
+}
+
+/* Căn chỉnh lại độ rộng các cột để robot không bị đẩy đi xa */
+.bottom-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Đảm bảo nút nằm giữa dòng */
+}
+
+.bottom-center {
+    flex: 0 0 auto; /* Robot giữ nguyên kích thước, không chiếm thêm không gian thừa */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.bottom-right {
+    flex: 1.5; /* Cho phần feedback rộng hơn một chút nhưng kéo sát vào robot */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Để feedback box áp sát về bên trái (phía robot) */
+    min-width: 300px;
+    margin-left: -20px;      /* Mẹo: Kéo cụm feedback lấn sang trái để sát robot hơn */
+}
+
+.btn-back {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 15px 40px;      /* Tăng nhẹ padding để nút trông cân đối */
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    transition: all 0.2s;
+    text-transform: uppercase;
+}
+.btn-back:hover { 
+    background: var(--primary-hover); 
+    transform: translateY(-2px);
+}
+
+.robot-result {
+    height: 220px; /* Tăng nhẹ kích thước robot để cân bằng với feedback box */
+    width: auto;
+    display: block;
+}
+
+/* Feedback Box */
+.feedback-bubble {
+    background: var(--bubble-yellow);
+    padding: 15px 20px;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: row;    /* Đổi lại thành hàng ngang cho đẹp trên PC */
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    box-shadow: var(--shadow-soft);
+    width: fit-content;     /* Chỉ rộng bằng nội dung, không chiếm hết 100% */
+    max-width: 500px;
+}
+
+/* Mũi tên bong bóng - Trỏ về phía robot */
+.feedback-bubble::before {
+    content: '';
+    position: absolute;
+    left: -12px;           /* Nằm bên trái để trỏ vào robot */
+    bottom: 25px;
+    border-top: 10px solid transparent;
+    border-right: 15px solid var(--bubble-yellow);
+    border-bottom: 10px solid transparent;
+}
+
+.bubble-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.rating-circles {
+    display: flex;
+    gap: 8px;
+}
+
+.circle-btn {
+    width: 32px;
+    height: 32px;
+    background: white;
+    border: 2px solid #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.feedback-input-area {
+    width: 100%;
+    max-width: 400px;
+    background: #f8f8f8; /* Nền xám nhẹ cho ô nhập */
+    padding: 12px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.feedback-input-area textarea {
+    width: 100%;
+    height: 60px;
+    border: none;
+    background: transparent;
+    resize: none;
+    outline: none;
+    font-size: 15px;
+    color: var(--text-dark);
+}
+
+.btn-submit-feedback {
+    background: var(--bubble-yellow);
+    border: none;
+    padding: 8px 18px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 8px;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+}
+
+/* Trạng thái khi di chuột qua (Hover) */
+.circle-btn:hover {
+    background-color: #333 !important;
+    color: white !important;
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+}
+
+/* Trạng thái khi đã được chọn (Active) */
+.circle-btn.active {
+    background-color: #000 !important; /* Màu đen đậm khi chọn */
+    color: white !important;
+    border-color: #000 !important;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+/* =========================================
+   5. MEDIA QUERIES (RESPONSIVE LOGIC)
+   ========================================= */
+
+/* --- Tablet (Dưới 992px) --- */
+@media (max-width: 992px) {
+    .dashed-container {
+        flex-direction: column-reverse; /* Đảo ngược để Robot lên trên Form trên mobile */
+        padding: 20px;
+        gap: 30px;
+    }
+
+    .col-right {
+        flex-direction: row; /* Robot và bong bóng nằm ngang */
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .robot-display {
+        margin-bottom: 0;
+        width: auto;
+        margin-top: 20px;
+    }
+    
+    .speech-bubble-right {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin-top: 0;
+        width: 180px;
+    }
+    .speech-bubble-right::after {
+        content: ''; 
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -15px; 
+        border-top: 15px solid var(--accent-blue); 
+        border-left: 10px solid transparent;      
+        border-right: 10px solid transparent;     
+        border-bottom: none;                      
+    }
+
+    .action-area {
+        margin-top: 0;
+        margin-left: 20px;
+    }
+
+    /* Result Page Tablet */
+    .bottom-section {
+        flex-direction: column;
+        align-items: center;
+    }
+    .bottom-left, .bottom-right {
+        width: 100%;
+        align-items: center;
+    }
+    .feedback-bubble::before {
+        display: none; /* Ẩn mũi tên ngang khi xếp chồng */
+    }
+}
+
+/* --- Mobile (Dưới 600px) --- */
+@media (max-width: 600px) {
+    /* Header */
+    .top-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .top-robot-group {
+        padding-left: 0;
+        margin-top: 20px;
+    }
+
+    .speech-bubble-top {
+        margin-right: 0;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    /* Form */
+    .dashed-container {
+        flex-direction: column-reverse; /* Vẫn giữ robot trên form */
+    }
+    
+    .col-right {
+        flex-direction: column; /* Robot trên, nút dưới */
+    }
+
+    .input-group label {
+        font-size: 16px;
+    }
+    
+    .stats-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .btn-secondary {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    /* Result Page Mobile */
+    .result-header h2 {
+        font-size: 24px;
+    }
+    .result-content-box {
+        padding: 15px;
+    }
+    .content-body {
+        font-size: 15px;
+    }
+    .bottom-center {
+        order: -1; /* Đưa robot lên đầu ở trang kết quả */
+        margin-bottom: 20px;
+    }
+    .robot-result {
+        height: 150px;
+    }
+}

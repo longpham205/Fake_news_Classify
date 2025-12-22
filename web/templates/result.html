@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả nhận diện</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="main-wrapper">
+        
+        <div class="dashed-container result-container">
+            <div class="result-header">
+                <div class="header-col">
+                    <h3>KẾT QUẢ</h3>
+                    <h2 id="resTitle"></h2>
+                </div>
+                <div class="header-col">
+                    <h3>XÁC SUẤT</h3>
+                    <h2 class="percent" id="resProb"></h2>
+                </div>
+                <div class="header-col">
+                    <h3 id="resLevelLabel">MỨC ĐỘ NGUY HIỂM</h3>
+                    <h2 id="resLevel"></h2>
+                </div>
+            </div>
+
+            <div class="result-content-box">
+                <div class="content-header" id="msgHeader">
+                    Xin hãy cẩn thận!
+                </div>
+                <div class="content-body" id="msgBody">
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-section">
+            
+            <div class="bottom-left">
+                <button  id="btnBack" class="btn-back" type="button">QUAY LẠI</button>
+            </div>
+
+            <div class="bottom-center">
+                <img src="../static/images/Robot3.png" alt="Robot Result" class="robot-result">
+            </div>
+
+            <div class="bottom-right">
+                <div class="feedback-bubble">
+                    <span class="bubble-text">Nếu còn có gì sai sót hãy gửi<br>đánh giá giúp mình nhé!</span>
+                    <div class="rating-circles">
+                        <div class="circle-btn" >1</div>
+                        <div class="circle-btn" >2</div>
+                        <div class="circle-btn" >3</div>
+                    </div>
+                </div>
+
+                <div class="feedback-input-area">
+                    <textarea placeholder="Nhập góp ý..."></textarea>
+                    <button type="button" class="btn-submit-feedback">Gửi Đánh Giá</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="module" src="../scripts/main.js"></script>
+</body>
+</html>
