@@ -15,7 +15,7 @@ def run_preprocessing(INPUT_CSV_PATH):
 
     # ====== 1. ĐƯỜNG DẪN CSV GỐC ======
     print("Đã lấy dữ liệu:",INPUT_CSV_PATH)
-    OUTPUT_CSV_PATH = os.path.join(os.path.abspath(os.path.join(os.path.dirname(INPUT_CSV_PATH),"..")),"data_processed/train_processed.csv")
+    OUTPUT_CSV_PATH = os.path.join(os.path.abspath(os.path.join(os.path.dirname(INPUT_CSV_PATH),"..")),"dataset/data_processed/train_processed.csv")
 
     # ====== 2. LOAD CSV ======
     df = pd.read_csv(INPUT_CSV_PATH)

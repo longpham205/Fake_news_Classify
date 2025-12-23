@@ -76,7 +76,10 @@ def _collect_reasons(label: str, explanation: Dict) -> List[str]:
 
     # fallback
     if not reasons:
-        reasons.append("Không phát hiện dấu hiệu đủ mạnh để kết luận")
+        if label == "true_news":
+            reasons.append("Không phát hiện dấu hiệu đủ mạnh để kết luận")
+        reasons.append("Tuy không có dấu hiệu nào đủ mạnh nhưng bạn nên cẩn thận với tin tức này")
+        
 
     return reasons
 

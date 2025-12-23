@@ -8,7 +8,7 @@ from src.train.train import train
 from src.train.evaluate import evaluate
 
 print("ĐANG TIỀN XỬ LÝ DỮ LIỆU")
-run_preprocessing(os.path.join(root_dir,"dataset/data_raw/vietnamese_news_dataset.csv"))
+run_preprocessing(os.path.join(root_dir,"data/vietnamese_news_dataset.csv"))
 print("ĐÃ TIỀN XỬ LÝ DỮ LIỆU")
 
 print("\nĐANG HUẤN LUYỆN")

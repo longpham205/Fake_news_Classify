@@ -12,16 +12,15 @@ let apiResult = null;
 let currentRating = null; 
 let isSubmitted = false; 
 
-function goResultPage() {
-    const isBackend = window.location.port === "8000";
-    window.location.href = isBackend ? "/result" : "result.html";
+function goResultPage() { 
+    const isBackend = window.location.port === "8000"; 
+    window.location.href = isBackend ? "/result" : "result.html"; 
 }
 
 function goHomePage() {
     const isBackend = window.location.port === "8000";
     window.location.href = isBackend ? "/" : "index.html";
 }
-
 document.addEventListener('DOMContentLoaded', () => {
 
     /* =========================================
