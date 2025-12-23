@@ -43,12 +43,13 @@ Web Application (FastAPI + UI)
 Fake_news_Classify/
 ├── dataset/            # Dữ liệu raw, processed và EDA
 ├── preprocessing/      # EDA & pipeline tiền xử lý
+├── json/               # Các dữ liệu cho hệ thống
 ├── src/
 │   ├── model/          # Định nghĩa mô hình PhoBERT
 │   ├── train/          # Huấn luyện & đánh giá
 │   ├── infer/          # Suy luận & giải thích
-│   ├── web/            # Backend FastAPI + Frontend
-│   └── main/           # Các file chạy pipeline
+├── web/                # Backend FastAPI + Frontend
+├── main/               # Các file chạy pipeline
 ├── checkpoints/        # Model đã huấn luyện
 ├── result/             # Kết quả training & feedback
 └── README.md
@@ -95,6 +96,52 @@ pip install -r requirements.txt
 
 ---
 
+4️⃣ Tải dữ liệu
+
+Bạn cần tải dataset tiếng Việt lưu vào thư mục chuẩn trong project:
+Tải từ link :
+```bash
+https://drive.google.com/file/d/1a6zlJf8OvfXme_G_Rg6BVcLMEC98XGVK/view?usp=drive_link
+```
+
+Lưu tại:
+```bash
+data/
+```
+
+---
+
+5️⃣ Tải checkpoint mô hình (nếu cần)
+
+Nếu bạn muốn chạy thử inference hoặc tiếp tục huấn luyện mà không train từ đầu, bạn cần checkpoint tốt nhất:
+
+Tải từ link :
+```bash
+https://drive.google.com/file/d/1ekFoDWUUCNksQbwCTs3o0oKKfci6wPap/view?usp=sharing
+```
+
+Lưu tại:
+```bash
+checkpoints/phobert_best.pt
+```
+
+---
+
+## CÁC BƯỚC CHẠY NHANH
+Chạy huấn luện nhanh bằng :
+```bash
+python main/run_training.py
+```
+
+Khởi động hệ thống web (Backend + Frontend):
+
+```bash
+python main/run_web.py
+```
+
+---
+
+## CÁC BƯỚC CHẠY CHI TIẾT
 ## 📊 Chạy phân tích dữ liệu (EDA)
 
 Thực hiện thống kê & phân tích dữ liệu đầu vào:
@@ -120,7 +167,7 @@ dataset/data_eda/
 Chạy pipeline tiền xử lý văn bản (làm sạch, tách từ, chia tập dữ liệu):
 
 ```bash
-python src/main/run_preprocessing.py
+python main/run_preprocessing.py
 ```
 
 📌 **Dữ liệu sau xử lý được lưu tại**:
@@ -140,7 +187,7 @@ dataset/data_processed/
 Huấn luyện mô hình PhoBERT trên dữ liệu đã xử lý:
 
 ```bash
-python src/main/run_training.py
+python main/run_training.py
 ```
 
 📌 **Kết quả huấn luyện**:
@@ -164,7 +211,7 @@ result/training_history.csv
 Chạy thử suy luận với văn bản bất kỳ:
 
 ```bash
-python src/main/run_inference.py
+python main/run_inference.py
 ```
 
 📌 Kết quả suy luận bao gồm:
@@ -180,7 +227,7 @@ python src/main/run_inference.py
 Khởi động hệ thống web (Backend + Frontend):
 
 ```bash
-python src/main/run_web.py
+python main/run_web.py
 ```
 
 Sau đó mở trình duyệt và truy cập:
@@ -239,6 +286,13 @@ result/feedback/YYYY_MM_DD.json
 * Huấn luyện lại mô hình từ feedback người dùng
 * Mở rộng sang các thể loại tin tức khác
 * Triển khai Docker / Cloud
+
+---
+
+## LINK TÀI LIỆU CHI TIẾT
+```bash
+https://docs.google.com/document/d/1skVWtzMcxeqqmsnvNoLLbbAzw2284bzrZVnz55b3DOg/edit?usp=sharing
+```
 
 ---
 
