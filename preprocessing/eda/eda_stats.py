@@ -3,7 +3,7 @@
 from collections import defaultdict
 import pandas as pd
 
-from config.config_eda import (
+from configs.config_eda import (
     LABELS,
     LABEL_ORDER,
     LABEL_FIELD,

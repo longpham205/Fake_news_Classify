@@ -1,6 +1,6 @@
-# preprocessing/validators.py
+# preprocessing/preprocess/validators.py
 
-from configs.config_preprocessing import LABELS
+from configs.config_preprocess import LABELS
 
 
 REQUIRED_COLUMNS = [

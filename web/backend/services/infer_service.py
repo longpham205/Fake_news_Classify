@@ -18,7 +18,7 @@ class InferService:
         if not isinstance(news_input, dict):
             raise ValueError("news_input must be a dictionary")
 
-        print(news_input)
+        print("news_input:\n",news_input)
 
         result = self.inferencer.infer(news_input)
 

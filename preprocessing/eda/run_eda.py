@@ -3,6 +3,8 @@
 import argparse
 import os
 import sys
+root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+sys.path.insert(0, root_dir)
 import pandas as pd
 
 # Ensure module import works when running as script
@@ -17,7 +19,7 @@ from preprocessing.eda.eda_stats import (
     compute_text_length_stats,
     compute_temporal_stats,
 )
-from config.config_eda import LABEL_FIELD, DATE_FIELD
+from configs.config_eda import LABEL_FIELD, DATE_FIELD
 
 
 # =========================================================
@@ -112,7 +114,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run EDA statistics pipeline")
     parser.add_argument(
         "--input",
-        default=os.path.join(PROJECT_ROOT,"dataset/data_raw/vietnamese_news_dataset.csv"),
+        default=os.path.join(root_dir,"dataset/data_raw/vietnamese_news_dataset.csv"),
         help="Path to input CSV (data_raw.csv)"
     )
 

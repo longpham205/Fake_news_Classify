@@ -26,7 +26,8 @@ AUGMENTATION_ENABLED_MODES = {TRAIN_MODE}
 from configs.shared import (
     RANDOM_SEED,
     LABELS,
-    LABEL2ID
+    LABEL2ID,
+    ROOT_DIR
     )
 
 
@@ -69,3 +70,10 @@ MAX_FILLER_TOKENS = 2
 
 # Protect URLs, emails, IPs, hashes
 PROTECT_CRITICAL_TOKENS = True
+
+# =========================
+# JSON PATH
+# =========================
+
+SYNONYM_MAP_PATH = ROOT_DIR / "json" / "synonyms.json"
+PANIC_WORDS_PATH = ROOT_DIR / "json" / "panic_words.json"

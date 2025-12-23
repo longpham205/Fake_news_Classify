@@ -14,13 +14,13 @@ from configs.shared import (
     NUM_CLASSES,
     MAX_SEQ_LENGTH,
     RANDOM_SEED,
+    ROOT_DIR
 )
 
 # =========================
 # Paths
 # =========================
 
-ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 DATA_DIR = os.path.join(ROOT_DIR, "dataset", "data_processed")
 OUTPUT_DIR = os.path.join(ROOT_DIR, "checkpoints")
 

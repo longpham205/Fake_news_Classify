@@ -5,7 +5,7 @@ root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, root_dir)
 import pandas as pd
 from preprocessing.preprocess.pipeline import preprocess_dataframe
-from preprocessing.preprocess.config import TRAIN_MODE
+from configs.config_preprocess import TRAIN_MODE
 
 
 def run_preprocessing(INPUT_CSV_PATH):

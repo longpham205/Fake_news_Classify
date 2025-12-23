@@ -8,7 +8,7 @@ Purpose:
 - NO model / training / inference logic here
 """
 
-from configs.shared import LABEL_ORDER as LABELS
+from configs.shared import LABEL_ORDER, LABELS
 
 # =========================
 # Label configuration

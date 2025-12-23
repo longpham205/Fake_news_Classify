@@ -14,6 +14,16 @@ Purpose:
 # Project metadata
 # =========================================================
 
+import sys
+from pathlib import Path
+
+ROOT_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT_DIR))
+
+# =========================================================
+# Project metadata
+# =========================================================
+
 PROJECT_NAME = "Fake News Detection"
 PROJECT_VERSION = "1.0.0"
 

@@ -1,0 +1,21 @@
+{
+  "xác_minh": ["verify", "validate", "xác_thực", "confirm", "kiểm tra", "thẩm định"],
+  "tài_khoản": ["account", "acc", "user account", "thông tin tài khoản", "login account"],
+  "đăng_nhập": ["login", "sign_in", "đăng nhập", "vào hệ thống", "enter account"],
+  "mật_khẩu": ["password", "passcode", "mật khẩu", "secret key", "key bảo mật"],
+  "trúng_thưởng": ["win", "prize", "giải thưởng", "thắng giải", "giải đặc biệt"],
+  "chuyển_khoản": ["transfer", "send money", "gửi tiền", "payment", "remittance"],
+  "lợi_nhuận": ["profit", "earnings", "lợi ích", "thu nhập", "doanh thu"],
+  "khẩn_cấp": ["urgent", "immediate", "ngay lập tức", "cấp bách", "gấp"],
+  "chia_sẻ_ngay": ["share now", "forward immediately", "lan truyền ngay", "chia sẻ tức thì"],
+  "tải_file": ["download file", "get file", "tải về", "nhận file"],
+  "cài_đặt_ứng_dụng": ["install app", "cài app", "setup application", "cài đặt phần mềm"],
+  "ảnh_giả": ["fake image", "ảnh chỉnh sửa", "manipulated image", "ảnh giả mạo"],
+  "video_giả": ["fake video", "video chỉnh sửa", "deepfake", "video giả mạo"],
+  "xác_minh_tài_khoản": ["verify account", "account confirmation", "check account", "kiểm tra tài khoản"],
+  "cập_nhật_thông_tin": ["update information", "cập nhật dữ liệu", "refresh info", "update info"],
+  "khóa_tài_khoản": ["lock account", "block account", "tạm khóa", "vô hiệu hóa"],
+  "đăng_ký": ["register", "sign up", "đăng ký mới", "create account"],
+  "nhấn_vào": ["click", "bấm vào", "nhấn vào đây", "click here"],
+  "xác_nhận": ["confirm", "validate", "thừa nhận", "xác nhận ngay"]
+}

@@ -1,17 +1,20 @@
-# preprocessing/augmentation.py
+# preprocessing/preprocess/augmentation.py
 
+import json
 import random
 import re
-from configs.config_preprocessing import (
+from configs.config_preprocess import (
     SENTENCE_SHUFFLE_PROB,
     SYNONYM_PROB,
+    SYNONYM_MAP_PATH
 )
 
 # Synonym map must be label-safe
-SYNONYM_MAP = {
-    "xác_minh": ["verify", "validate", "xác_thực"],
-    "tài_khoản": ["account", "acc"],
-}
+def load_synonyms(file_path: str) -> dict:
+    with open(file_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+SYNONYM_MAP = load_synonyms(SYNONYM_MAP_PATH)
 
 
 def shuffle_sentences(text: str) -> str:

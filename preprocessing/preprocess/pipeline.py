@@ -1,4 +1,4 @@
-# preprocessing/pipeline.py
+# preprocessing/preprocess/pipeline.py
 
 import pandas as pd
 
@@ -7,7 +7,7 @@ from .text_cleaner import clean_text
 from .word_segmenter import segment_vi
 from .augmentation import augment_text
 from .feature_extractor import extract_aux_features
-from configs.config_preprocessing import (
+from configs.config_preprocess import (
     TRAIN_MODE,
     AUGMENTATION_ENABLED_MODES,
     MIN_TOKEN_LENGTH,

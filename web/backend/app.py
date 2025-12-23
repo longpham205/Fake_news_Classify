@@ -57,12 +57,12 @@ def create_app() -> FastAPI:
     # =========================
     @app.get("/", response_class=HTMLResponse)
     def index():
-        html_path = BASE_DIR / "web" / "templates" / "index.html"
+        html_path = BASE_DIR / "templates" / "index.html"
         return html_path.read_text(encoding="utf-8")
 
     @app.get("/result", response_class=HTMLResponse)
     def result():
-        html_path = BASE_DIR / "web" / "templates" / "result.html"
+        html_path = BASE_DIR   / "templates" / "result.html"
         return html_path.read_text(encoding="utf-8")
 
     return app

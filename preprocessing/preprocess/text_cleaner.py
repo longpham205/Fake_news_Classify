@@ -1,8 +1,8 @@
-# preprocessing/text_cleaner.py
+# preprocessing/preprocess/text_cleaner.py
 
 import re
 import unicodedata
-from configs.config_preprocessing import LOWERCASE_MODE, UNICODE_NORMAL_FORM
+from configs.config_preprocess import LOWERCASE_MODE, UNICODE_NORMAL_FORM
 
 
 # Patterns used for controlled lowercase

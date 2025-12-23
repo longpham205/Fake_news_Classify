@@ -56,7 +56,6 @@ dataset/data_eda/
 # Model Checkpoints (nặng)
 # ===============================
 checkpoints/
-dataset/checkpoint/
 
 # ===============================
 # Results & Feedback

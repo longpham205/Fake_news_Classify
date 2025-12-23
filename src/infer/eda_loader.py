@@ -94,18 +94,24 @@ class EDAStats:
         if not profile:
             return reasons
         for feat, value in features.items():
+      
             if feat not in profile:
                 continue
             if value == -1:
                 continue
             mean = profile[feat].get("mean")
             std = profile[feat].get("std")
+            
             if mean is None or std is None or std == 0:
                 continue
             z = abs(value - mean) / std
             if z > 1.5:
+                text = ""
+                if feat == "num_shares" :
+                    text = "chia sẻ"
+                else : text = "bình luận"
                 reasons.append(
-                    f"Giá trị {feat} lệch nhẹ so với phân phối thường thấy của nhóm {label}"
+                    f"Số lượng {text} lệch nhẹ so với phân phối thường thấy của nhóm {label}"
                 )
 
         return reasons

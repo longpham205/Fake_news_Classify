@@ -1,13 +1,18 @@
-# preprocessing/feature_extractor.py
+# preprocessing/preprocess/feature_extractor.py
+from configs.config_preprocess import PANIC_WORDS_PATH
+import json
+from pathlib import Path
 
-PANIC_WORDS = {
-    "khẩn_cấp",
-    "gấp",
-    "ngay_lập_tức",
-    "cảnh_báo",
-    "nguy_hiểm",
-    "đe_doạ",
-}
+def load_panic_words(file_path: str) -> set:
+    path = Path(file_path)
+    if not path.exists():
+        print(f"[Warning] PANIC_WORDS JSON file not found: {file_path}")
+        return set()
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+        return set(data.get("panic_words", []))
+
+PANIC_WORDS = load_panic_words(PANIC_WORDS_PATH)
 
 
 def extract_aux_features(text: str) -> dict:

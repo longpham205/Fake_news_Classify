@@ -18,13 +18,13 @@ CONFIDENCE_MEDIUM = 0.4
 CONFIDENCE_LOW = 0.2
 
 
-def _confidence_level(confidence: float) -> str:
+def _confidence_level(label: str, confidence: float) -> str:
+    if label == "true_news":
+        return "low"
     if confidence >= CONFIDENCE_HIGH:
         return "high"
     if confidence >= CONFIDENCE_MEDIUM:
         return "medium"
-    if confidence >= CONFIDENCE_LOW:
-        return "low"
     return "unknow"
 
 
@@ -127,7 +127,7 @@ def map_result_to_ui(model_output: Dict) -> Dict:
             "final_label": final_label,
             "final_label_text": final_label_text,
             "confidence": confidence,
-            "confidence_level": _confidence_level(confidence),
+            "confidence_level": _confidence_level(final_label,confidence),
             "ui_state": {
                 "border_class": _border_class(final_label, confidence),
                 "color_class": _color_class(final_label, confidence)

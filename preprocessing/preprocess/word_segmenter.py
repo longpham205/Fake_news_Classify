@@ -1,4 +1,4 @@
-# preprocessing/word_segmenter.py
+# preprocessing/preprocess/word_segmenter.py
 
 import re
 from pyvi import ViTokenizer

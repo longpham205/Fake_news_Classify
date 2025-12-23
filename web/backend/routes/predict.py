@@ -35,7 +35,7 @@ def predict(news: NewsInput):
         # 3. Mapping sang UI response (đúng contract frontend)
         ui_response = map_result_to_ui(raw_model_output)
         
-        print(ui_response)
+        print("ui_response:\n",ui_response)
 
         return ui_response
 

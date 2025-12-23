@@ -1,39 +1,16 @@
 # infer/phrase_extractor.py
 
 import re
+import json
 from typing import List, Dict
+from configs.config_infer import SUSPICIOUS_KEYWORDS_PATH
 
 # ---------------- keyword groups ----------------
-SUSPICIOUS_KEYWORDS = {
-    "financial_scam": [
-        "chuyển khoản",
-        "trúng thưởng",
-        "hoàn tiền",
-        "đầu tư",
-        "lợi nhuận cao",
-    ],
-    "phishing": [
-        "xác minh tài khoản",
-        "cập nhật thông tin",
-        "khóa tài khoản",
-        "click",
-        "đường link",
-    ],
-    "hoax": [
-        "khẩn cấp",
-        "ngay lập tức",
-        "chia sẻ ngay",
-    ],
-    "malware": [
-        "tải file",
-        "cài đặt ứng dụng",
-        "file đính kèm",
-    ],
-    "deepfake": [
-        "ảnh giả",
-        "video giả",
-    ],
-}
+def load_keywords_from_json(file_path: str) -> Dict[str, List[str]]:
+    with open(file_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+SUSPICIOUS_KEYWORDS = load_keywords_from_json(SUSPICIOUS_KEYWORDS_PATH)
 
 REGEX_PATTERNS = {
     "url": r"http[s]?://\S+",

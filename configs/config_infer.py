@@ -8,8 +8,6 @@ Purpose:
 - Confidence & explainability policy
 """
 
-import sys
-from pathlib import Path
 import torch
 
 from configs.shared import (
@@ -19,14 +17,12 @@ from configs.shared import (
     LABEL2ID,
     ID2LABEL,
     LABEL_DESCRIPTIONS,
+    ROOT_DIR
 )
 
 # =========================================================
 # Paths
 # =========================================================
-
-ROOT_DIR = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(ROOT_DIR))
 
 CHECKPOINT_PATH = ROOT_DIR / "checkpoints" / "phobert_best.pt"
 
@@ -76,3 +72,10 @@ EDA_FILES = {
     "label_text_length_stats": EDA_DIR / "label_text_length_stats.json",
     "label_time_distribution": EDA_DIR / "label_time_distribution.csv",
 }
+
+
+# =========================================================
+# SUSPICIOUS_KEYWORDS_PATH
+# =========================================================
+
+SUSPICIOUS_KEYWORDS_PATH = ROOT_DIR / "json" / "keywords.json"
