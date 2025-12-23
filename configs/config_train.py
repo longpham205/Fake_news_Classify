@@ -46,7 +46,7 @@ DROPOUT_RATE = 0.2
 # =========================
 
 BATCH_SIZE = 16
-EPOCHS = 3
+EPOCHS = 2
 LEARNING_RATE = 2e-5
 WEIGHT_DECAY = 0.01
 

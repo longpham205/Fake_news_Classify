@@ -22,7 +22,7 @@ def evaluate(data_processed_dir):
     device = torch.device(config.DEVICE)
 
     TEST_PATH  = os.path.join(data_processed_dir,"test.csv")
-    CHECKPOINT_PATH = os.path.join(os.path.abspath(os.path.join(data_processed_dir,"..")),"checkpoint/phobert_best.pt")
+    CHECKPOINT_PATH = os.path.join(os.path.abspath(os.path.join(data_processed_dir,"../..")),"checkpoint/phobert_best.pt")
 
     # Tokenizer (same as training)
     tokenizer = AutoTokenizer.from_pretrained(
@@ -34,7 +34,7 @@ def evaluate(data_processed_dir):
     test_dataset = FakeNewsDataset(
         csv_path=TEST_PATH,
         tokenizer=tokenizer,
-        max_len=config.MAX_LEN
+        max_len=config.MAX_SEQ_LENGTH
     )
 
     data_collator = DataCollatorWithPadding(tokenizer)
