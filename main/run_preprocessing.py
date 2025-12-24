@@ -19,24 +19,25 @@ def run_preprocessing(INPUT_CSV_PATH):
 
     # ====== 2. LOAD CSV ======
     df = pd.read_csv(INPUT_CSV_PATH)
-
-    # ====== 3. PREPROCESS ======
-    processed_df = preprocess_dataframe(df, mode=TRAIN_MODE)
-
-    # ====== 4. SAVE KẾT QUẢ ======
-    processed_df.to_csv(OUTPUT_CSV_PATH, index=False)
-
-    print(f"Saved processed data to {OUTPUT_CSV_PATH}")
-
+    
     #==================================
-    #EDA
+    # 3.EDA
     #==================================
     from preprocessing.eda.run_eda import run_eda
     print("\nĐang phân tích dữ liệu:")
     run_eda(OUTPUT_CSV_PATH)
 
+
+    # ====== 4. PREPROCESS ======
+    processed_df = preprocess_dataframe(df, mode=TRAIN_MODE)
+
+    # ====== 5. SAVE KẾT QUẢ ======
+    processed_df.to_csv(OUTPUT_CSV_PATH, index=False)
+
+    print(f"\nSaved processed data to {OUTPUT_CSV_PATH}")
+
     #==================================
-    #Split data
+    #6. Split data
     #==================================
     from preprocessing.preprocess.split_data import split
     print("\nĐang chia dữ liệu:")
