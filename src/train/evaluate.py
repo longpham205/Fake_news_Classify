@@ -1,6 +1,7 @@
 # evaluate.py
 import os
 import sys
+import json
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, root_dir)
 import torch
@@ -18,11 +19,11 @@ from src.model.model import PhoBERTClassifier
 import configs.config_train as config
 
 
-def evaluate(data_processed_dir):
+def evaluate():
     device = torch.device(config.DEVICE)
 
-    TEST_PATH  = os.path.join(data_processed_dir,"test.csv")
-    CHECKPOINT_PATH = os.path.join(os.path.abspath(os.path.join(data_processed_dir,"../..")),"checkpoints/phobert_best.pt")
+    TEST_PATH  = os.path.join(root_dir,"dataset/data_processed/test.csv")
+    CHECKPOINT_PATH = os.path.join(root_dir,"checkpoints/phobert_best.pt")
 
     # Tokenizer (same as training)
     tokenizer = AutoTokenizer.from_pretrained(
@@ -90,7 +91,33 @@ def evaluate(data_processed_dir):
 
     print("Confusion Matrix:")
     print(cm)
+    
+    # ==================================================
+    # =========== SAVE ALL RESULTS TO JSON ==============
+    # ==================================================
+    output_dir = os.path.join(root_dir,"result/evaluation")
+    os.makedirs(output_dir, exist_ok=True)
+
+    report_dict = classification_report(
+        all_labels,
+        all_preds,
+        digits=4,
+        output_dict=True
+    )
+
+    results = {
+        "test_accuracy": round(acc, 4),
+        "test_macro_f1": round(macro_f1, 4),
+        "classification_report": report_dict,
+        "confusion_matrix": cm.tolist()
+    }
+
+    json_path = os.path.join(output_dir, "evaluation_results.json")
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(results, f, indent=4, ensure_ascii=False)
+
+    print(f"\n All evaluation results saved to {json_path}")
 
 
 if __name__ == "__main__":
-    evaluate("g:\VsCode\Python\ANM\Fake_news_Classify\dataset\data_processed")
+    evaluate()

@@ -1,8 +1,6 @@
 # train.py
 import os
 import sys
-root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-sys.path.insert(0, root_dir)
 import random
 import numpy as np
 import torch
@@ -106,16 +104,17 @@ def eval_epoch(model, dataloader, device):
 # =========================
 # Main training pipeline
 # =========================
-def train(data_processed_dir):
+def train():
+ 
+    root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+    data_processed_dir(root_dir,"dataset/data_processed")
     
     TRAIN_PATH = os.path.join(data_processed_dir,"train.csv")
     VAL_PATH   = os.path.join(data_processed_dir,"val.csv")
     TEST_PATH  = os.path.join(data_processed_dir,"test")
     
     CHECKPOINT_PATH = os.path.join(os.path.abspath(os.path.join(data_processed_dir,"../..")),"checkpoints/phobert_best.pt")
-    print(CHECKPOINT_PATH)
-    RESULT_PATH = os.path.join(os.path.abspath(os.path.join(data_processed_dir,"../..")),"result/training_history.csv")
-    print(RESULT_PATH)
+    RESULT_PATH = os.path.join(os.path.abspath(os.path.join(data_processed_dir,"../..")),"result/train/training_history.csv")
     
     set_seed(config.RANDOM_SEED)
     device = torch.device(config.DEVICE)

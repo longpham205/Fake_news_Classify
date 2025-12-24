@@ -8,13 +8,13 @@ from src.train.train import train
 from src.train.evaluate import evaluate
 
 print("ĐANG TIỀN XỬ LÝ DỮ LIỆU")
-run_preprocessing(os.path.join(root_dir,"data/vietnamese_news_dataset.csv"))
+run_preprocessing("data/vietnamese_news_dataset.csv")
 print("ĐÃ TIỀN XỬ LÝ DỮ LIỆU")
 
 print("\nĐANG HUẤN LUYỆN")
-train(os.path.join(root_dir,"dataset/data_processed"))
+train()
 print("ĐÃ HUẤN LUYỆN")
 
 print("\nĐANG ĐÁNH GIÁ")
-evaluate(os.path.join(root_dir,"dataset/data_processed"))
+evaluate()
 print("ĐÃ ĐÁNH GIÁ")

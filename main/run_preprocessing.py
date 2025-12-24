@@ -1,21 +1,22 @@
 #run_preprocessing
 import os
 import sys
-root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.insert(0, root_dir)
 import pandas as pd
 from preprocessing.preprocess.pipeline import preprocess_dataframe
 from configs.config_preprocess import TRAIN_MODE
 
 
-def run_preprocessing(INPUT_CSV_PATH):
+def run_preprocessing(input):
     #==================================
     #Preprocessing
     #==================================
+    
+    root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    INPUT_CSV_PATH = os.path.join(root_dir,input)
 
     # ====== 1. ĐƯỜNG DẪN CSV GỐC ======
     print("Đã lấy dữ liệu:",INPUT_CSV_PATH)
-    OUTPUT_CSV_PATH = os.path.join(os.path.abspath(os.path.join(os.path.dirname(INPUT_CSV_PATH),"..")),"dataset/data_processed/train_processed.csv")
+    OUTPUT_CSV_PATH = os.path.join(root_dir,"dataset/data_processed/train_processed.csv")
 
     # ====== 2. LOAD CSV ======
     df = pd.read_csv(INPUT_CSV_PATH)
