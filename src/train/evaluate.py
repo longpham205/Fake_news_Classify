@@ -22,7 +22,7 @@ def evaluate(data_processed_dir):
     device = torch.device(config.DEVICE)
 
     TEST_PATH  = os.path.join(data_processed_dir,"test.csv")
-    CHECKPOINT_PATH = os.path.join(os.path.abspath(os.path.join(data_processed_dir,"../..")),"checkpoint/phobert_best.pt")
+    CHECKPOINT_PATH = os.path.join(os.path.abspath(os.path.join(data_processed_dir,"../..")),"checkpoints/phobert_best.pt")
 
     # Tokenizer (same as training)
     tokenizer = AutoTokenizer.from_pretrained(

@@ -112,7 +112,7 @@ def train(data_processed_dir):
     VAL_PATH   = os.path.join(data_processed_dir,"val.csv")
     TEST_PATH  = os.path.join(data_processed_dir,"test")
     
-    CHECKPOINT_PATH = os.path.join(os.path.abspath(os.path.join(data_processed_dir,"../..")),"checkpoint/phobert_best.pt")
+    CHECKPOINT_PATH = os.path.join(os.path.abspath(os.path.join(data_processed_dir,"../..")),"checkpoints/phobert_best.pt")
     print(CHECKPOINT_PATH)
     RESULT_PATH = os.path.join(os.path.abspath(os.path.join(data_processed_dir,"../..")),"result/training_history.csv")
     print(RESULT_PATH)
